@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/adonaivillalobos/cse341-berlin-tourism#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.4.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }
