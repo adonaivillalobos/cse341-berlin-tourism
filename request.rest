@@ -1,0 +1,15 @@
+### Create attraction (should return 401 if not logged in)
+POST http://localhost:8080/attractions
+Content-Type: application/json
+
+{
+  "name": "Test Attraction",
+  "category": "test",
+  "description": "Test description",
+  "address": "Test address",
+  "neighborhood": "Test neighborhood",
+  "openingHours": "9:00 AM - 5:00 PM",
+  "entryFee": 0,
+  "website": "https://test.com",
+  "rating": 4.0
+}

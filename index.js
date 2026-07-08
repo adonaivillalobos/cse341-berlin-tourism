@@ -1,8 +1,11 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
+const passport = require('./auth');
 const { connectDB } = require('./db');
 const attractionsRouter = require('./routes/attractions');
 const toursRouter = require('./routes/tours');
+const authRouter = require('./routes/auth');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
 
@@ -11,12 +14,22 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.get('/', (req, res) => {
   res.send('Berlin Tourism API');
 });
 
+app.use('/auth', authRouter);
 app.use('/attractions', attractionsRouter);
 app.use('/tours', toursRouter);
 
