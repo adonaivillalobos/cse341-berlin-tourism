@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 const passport = require('../auth');
 
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', passport.authenticate('google', { 
+  scope: ['profile', 'email'],
+  prompt: 'select_account'
+}));
 
 router.get(
   '/google/callback',
